@@ -9,9 +9,12 @@ class Particle {
 	}
 	draw(s, f) {
 		strokeWeight(0.8);
-		stroke(s);
-		if(f != null){ fill(`${f}`); }
-		else{ noFill(); }
+		this.applyStroke(s);
+		if (f != null) {
+			fill(`${f}`);
+		} else {
+			noFill();
+		}
 		this.radius -= this.radiusDecrement;
 		ellipse(this.position.x, this.position.y, this.radius);
 	}
@@ -30,5 +33,8 @@ class Particle {
 		let index = x + y * cols;
 		let force = vectors[index];
 		this.applyForce(force);
+	}
+	applyStroke(c) {
+		stroke(c.r, c.g, c.b, c.a);
 	}
 }
